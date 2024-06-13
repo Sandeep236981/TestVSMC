@@ -1,0 +1,22 @@
+var appURL = 'APP_CLOUD_PAGE_URL';
+var clientID = 'CLIENT_ID';
+var clientSecret = 'CLIENT_SECRET';
+var clientBase = 'API_BASE_URI';
+
+var code = Platform.Request.GetQueryStringParameter('code');
+var payload = {
+    grant_type: 'authorization_code',
+    code: code,
+    client_id: clientID,
+    client_secret: clientSecret,
+    redirect_uri: appURL
+};
+
+var response = HTTP.Post('https://' + clientBase + '.auth.marketingcloudapis.com/v2/token', 'application/json', Stringify(payload));
+
+if (response.StatusCode == 200) {
+    var parsedResponse = Platform.Function.ParseJSON(response.Response[0]);
+    var accessToken = parsedResponse.access_token;
+    var tokenExpire = Platform.Function.SystemDateToLocalDate(Platform.Function.Now());
+    tokenExpire.setMinutes(tokenExpire.getMinutes() + 18);
+};
