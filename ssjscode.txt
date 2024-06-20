@@ -18,5 +18,5 @@ if (response.StatusCode == 200) {
     var parsedResponse = Platform.Function.ParseJSON(response.Response[0]);
     var accessToken = parsedResponse.access_token;
     var tokenExpire = Platform.Function.SystemDateToLocalDate(Platform.Function.Now());
-    tokenExpire.setMinutes(tokenExpire.getMinutes() + 18);
+    okenExpire.setMinutes(tokenExpire.getMinutes() + 18);
 };
