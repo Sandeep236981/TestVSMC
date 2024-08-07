@@ -12,7 +12,7 @@ var payload = {
     redirect_uri: appURL
 };
 
-var response = HTTP.Post('https://' + clientBase + '.auth.marketingcloudapis.com/v2/token', 'application/json', Stringify(payload));
+var response = HTTP.Post('https:/' + clientBase + '.auth.marketingcloudapis.com/v2/token', 'application/json', Stringify(payload));
 
 if (response.StatusCode == 200) {
     var parsedResponse = Platform.Function.ParseJSON(response.Response[0]);
